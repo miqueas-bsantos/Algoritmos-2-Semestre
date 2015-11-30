@@ -5,11 +5,11 @@ package algoritimos;
 
 public class Pilha {
     private int topo;
-    private Object dados[];
+    private int dados[];
 
     public Pilha() {
         topo = -1;
-        dados = new Object[50];
+        dados = new int[50];
     }
     
     
@@ -21,23 +21,23 @@ public class Pilha {
         return(topo == -1);
     }
     
-    public void push(Object x){
+    public void push(int x){
         if (!isFull()) {
             topo++;
             dados[topo] = x;
         }else{
-            System.out.println("Pilha Vazia");
+            System.out.println("Pilha Cheia");
         }
     }
     
-    public Object pop(){
+    public int pop(){
         if (!isEmpty()) {
-            Object x = dados[topo];
+            int x = dados[topo];
             topo--;
             return x;
         }else{
             System.out.println("Pilha Vazia");
-            return null;
+            return 0;
         }
     }
     
