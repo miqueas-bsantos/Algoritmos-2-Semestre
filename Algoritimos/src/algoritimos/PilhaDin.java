@@ -97,8 +97,9 @@ class TerceiraListaSubinoonibus {
     public static void main(String[] args){
         
   
-        String palavra = "miqueas";
-        String comparador = "";
+        String palavra = "Natan";
+        
+        String palavraAuxiliar = "";
         
         PilhaDin p = new PilhaDin();
         
@@ -107,10 +108,10 @@ class TerceiraListaSubinoonibus {
         }
         
         while (!p.isEmpty()) {
-            comparador += p.pop();
+            palavraAuxiliar += p.pop();
         }
         
-        if (palavra.equals(comparador)) {
+        if (palavra.toLowerCase().equals(palavraAuxiliar.toLowerCase())) {
             System.out.println("é um palíndromo");
         }else{
             System.err.println("não é um palíndromo");
@@ -121,25 +122,26 @@ class TerceiraListaSubinoonibus {
 
 
 class TerceiraListaParênteses {
-
+    static boolean abrirEmpilhar(char a){
+        return (a == '(' || a == '[' || a == '{') ;
+    }
+    static boolean mesmoTipo(char a, char b){
+        return (a == '(' & b == ')' || a == '[' & b == ']' || a == '{' & b == '}');
+    }
     public static void main(String[] args){
        
-        String formula = "((a+b))";
-        String abrir = "([{";
-        String fechar = "}])";
-        int contador = 0;
+        String formula = "(()[()])";
         PilhaDin p = new PilhaDin();
+
         for (int i = 0; i < formula.length(); i++) {
-            if (abrir.contains(formula.charAt(i)+"")) {
+            if (abrirEmpilhar(formula.charAt(i))) {
                 p.push(formula.charAt(i));
-                contador++;
-            }else if(fechar.contains(formula.charAt(i)+"")){
+            }else if(mesmoTipo((char)p.top(), formula.charAt(i))){
                 p.pop();
-                contador++;
             }
         }
         
-        if (p.isEmpty() & contador % 2 == 0) {
+        if (p.isEmpty()) {
             System.out.println("Bem formulada");
         }else{
             System.err.println("Mal formulada");
